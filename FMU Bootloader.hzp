@@ -1,0 +1,160 @@
+<!DOCTYPE CrossStudio_Project_File>
+<solution Name="FMU Bootloader" target="8" version="2">
+  <project Name="FMU Bootloader">
+    <configuration
+      Name="Common"
+      Placement="Flash"
+      Target="STM32F427VG"
+      arm_architecture="v7EM"
+      arm_compiler_variant="gcc"
+      arm_core_type="Cortex-M4"
+      arm_fpu_type="FPv4-SP-D16"
+      arm_gcc_target="arm-unknown-eabi"
+      arm_linker_heap_size="0"
+      arm_linker_jtag_pad_pre_dr="1"
+      arm_linker_jtag_pad_pre_ir="5"
+      arm_linker_process_stack_size="0"
+      arm_linker_stack_size="2048"
+      arm_simulator_memory_simulation_filename="$(TargetsDir)/STM32/STM32SimulatorMemory.dll"
+      arm_simulator_memory_simulation_parameter="STM32F427VG;0x100000;0x30000"
+      arm_target_connect_with_reset="Yes"
+      arm_target_debug_interface_type="ADIv5"
+      arm_target_interface_type="SWD"
+      arm_target_loader_applicable_loaders="Flash"
+      arm_target_loader_default_loader="Flash"
+      arm_target_restrict_memory_accesses="Yes"
+      c_additional_options="-Wall"
+      c_preprocessor_definitions="STARTUP_FROM_RESET;BOOTLOADER"
+      c_user_include_directories="$(ProjectDir)/inc;$(ProjectDir)/Libraries/FatFs/src;$(ProjectDir)/Libraries/STM32F4xx_StdPeriph_Driver/inc;$(ProjectDir)/Libraries/CMSIS/Device/ST/STM32F4xx/Include;$(ProjectDir)/Libraries/CMSIS/Include"
+      debug_register_definition_file="$(TargetsDir)/STM32/STM32F427x_Peripherals.xml"
+      linker_memory_map_file="$(TargetsDir)/STM32/STM32F427VG_MemoryMap.xml"
+      linker_output_format="hex"
+      linker_section_placement_file="$(StudioDir)/targets/Cortex_M/flash_placement.xml"
+      project_directory=""
+      project_type="Executable"
+      property_groups_file_path="$(TargetsDir)/STM32/propertyGroups.xml"
+      target_get_partname_script="GetPartName()"
+      target_match_partname_script="MatchPartName(&quot;$(Target)&quot;)"
+      target_script_file="$(TargetsDir)/STM32/STM32_Target.js"
+      target_trace_initialize_script="EnableTrace(&quot;$(TraceInterfaceType)&quot;)" />
+    <configuration
+      Name="Flash"
+      arm_target_flash_loader_file_path="$(TargetsDir)/STM32/Release/STM32F2xx_Loader_rpc.elf"
+      arm_target_flash_loader_type="LIBMEM RPC Loader"
+      arm_target_loader_can_erase_all="Yes"
+      arm_target_loader_can_lock_all="No"
+      arm_target_loader_can_lock_range="No"
+      arm_target_loader_can_unlock_all="No"
+      arm_target_loader_can_unlock_range="No"
+      target_reset_script="FLASHReset()" />
+    <configuration Name="RAM" target_reset_script="Reset()" />
+    <folder Name="System Files">
+      <file file_name="$(StudioDir)/source/thumb_crt0.s" />
+      <file file_name="$(TargetsDir)/STM32/STM32_Startup.s" />
+    </folder>
+    <folder Name="Libraries">
+      <folder Name="STM32F4xx_StdPeriph_Driver">
+        <folder Name="inc">
+          <file file_name="Libraries/STM32F4xx_StdPeriph_Driver/inc/misc.h" />
+          <file file_name="Libraries/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_adc.h" />
+          <file file_name="Libraries/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_cec.h" />
+          <file file_name="Libraries/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_dma.h" />
+          <file file_name="Libraries/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_flash.h" />
+          <file file_name="Libraries/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_gpio.h" />
+          <file file_name="Libraries/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_pwr.h" />
+          <file file_name="Libraries/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_rcc.h" />
+          <file file_name="Libraries/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_rtc.h" />
+          <file file_name="Libraries/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_sdio.h" />
+          <file file_name="Libraries/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_syscfg.h" />
+          <file file_name="Libraries/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_usart.h" />
+        </folder>
+        <folder Name="src">
+          <file file_name="Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_dma.c" />
+          <file file_name="Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_flash.c" />
+          <file file_name="Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_gpio.c" />
+          <file file_name="Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_pwr.c" />
+          <file file_name="Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_rcc.c" />
+          <file file_name="Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_sdio.c" />
+          <file file_name="Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_syscfg.c" />
+          <file file_name="Libraries/STM32F4xx_StdPeriph_Driver/src/misc.c" />
+          <file file_name="Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_rtc.c" />
+          <file file_name="Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_usart.c" />
+        </folder>
+        <configuration
+          Name="Debug"
+          gcc_optimization_level="Optimize For Size" />
+        <configuration
+          Name="Release"
+          gcc_optimization_level="Optimize For Size" />
+      </folder>
+      <folder Name="CMSIS">
+        <folder Name="Include">
+          <file file_name="Include/core_cm4.h" />
+        </folder>
+        <folder Name="Device">
+          <folder Name="ST">
+            <folder Name="STM32F4xx">
+              <folder Name="Include">
+                <file file_name="Libraries/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h" />
+                <file file_name="Libraries/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h" />
+              </folder>
+            </folder>
+          </folder>
+        </folder>
+      </folder>
+      <folder Name="FatFs">
+        <folder Name="src">
+          <file file_name="Libraries/FatFs/src/integer.h" />
+          <file file_name="Libraries/FatFs/src/ffconf.h" />
+          <file file_name="Libraries/FatFs/src/ff.h" />
+          <file file_name="Libraries/FatFs/src/ff.c" />
+          <file file_name="Libraries/FatFs/src/diskio.h" />
+        </folder>
+      </folder>
+    </folder>
+    <folder Name="inc">
+      <file file_name="inc/stm32_bsp.h" />
+      <file file_name="inc/stm32f4xx_conf.h" />
+      <file file_name="inc/sdio_sd.h" />
+      <file file_name="inc/stm32f4xx_it.h" />
+      <file file_name="inc/upgrade.h" />
+      <file file_name="inc/serial.h" />
+      <file file_name="inc/px4io_protocol.h" />
+      <file file_name="inc/crc.h" />
+    </folder>
+    <folder Name="src">
+      <file file_name="src/main.c" />
+      <file file_name="src/stm32_bsp.c" />
+      <file file_name="src/system_stm32f4xx.c" />
+      <file file_name="src/sdio_sd.c" />
+      <file file_name="src/stm32f4xx_it.c" />
+      <file file_name="src/diskio.c" />
+      <file file_name="src/upgrade.c" />
+      <file file_name="src/serial.c" />
+      <file file_name="src/crc.c" />
+    </folder>
+  </project>
+  <configuration Name="THUMB Debug" inherited_configurations="THUMB;Debug" />
+  <configuration
+    Name="THUMB"
+    Platform="ARM"
+    arm_instruction_set="Thumb"
+    arm_library_instruction_set="Thumb"
+    c_preprocessor_definitions="__THUMB"
+    hidden="Yes" />
+  <configuration
+    Name="Debug"
+    c_preprocessor_definitions="DEBUG"
+    gcc_debugging_level="Level 3"
+    gcc_optimization_level="None"
+    hidden="Yes" />
+  <configuration
+    Name="THUMB Release"
+    inherited_configurations="THUMB;Release" />
+  <configuration
+    Name="Release"
+    c_preprocessor_definitions="NDEBUG"
+    gcc_debugging_level="Level 1"
+    gcc_optimization_level="Optimize For Size"
+    hidden="Yes" />
+</solution>
